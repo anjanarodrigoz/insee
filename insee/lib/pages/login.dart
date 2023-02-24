@@ -38,48 +38,44 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 30.0, horizontal: 20.0),
-                      child: SizedBox(
-                        width: 500.0,
-                        height: 400.0,
-                        child: Form(
-                          key: _loginController.formKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CustomTextFormField(
-                                keyboardType: TextInputType.emailAddress,
-                                validator: _loginController.validateEmail,
-                                onSaved: (value) {
-                                  _loginController.email = value!;
-                                },
-                                labelText: 'Email',
-                              ),
-                              const SizedBox(height: 20.0),
-                              CustomTextFormField(
-                                obscureText: true,
-                                validator: _loginController.validatePassword,
-                                onSaved: (value) {
-                                  _loginController.password = value!;
-                                },
-                                labelText: 'Password',
-                              ),
-                              const SizedBox(height: 32.0),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.black,
-                                    fixedSize: const Size(200.0, 40.0)),
-                                onPressed: _loginController.submit,
-                                child: const Text('LOGIN'),
-                              ),
-                              const SizedBox(
-                                height: 100.0,
-                              ),
-                              const Text(
-                                '@Developed by Shark Developers',
-                              )
-                            ],
-                          ),
+                      child: Form(
+                        key: _loginController.formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomTextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              validator: _loginController.validateEmail,
+                              onSaved: (value) {
+                                _loginController.email = value!;
+                              },
+                              labelText: 'Email',
+                            ),
+                            const SizedBox(height: 20.0),
+                            CustomTextFormField(
+                              obscureText: true,
+                              validator: _loginController.validatePassword,
+                              onSaved: (value) {
+                                _loginController.password = value!;
+                              },
+                              labelText: 'Password',
+                            ),
+                            const SizedBox(height: 32.0),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  fixedSize: const Size(200.0, 40.0)),
+                              onPressed: _loginController.submit,
+                              child: const Text('LOGIN'),
+                            ),
+                            const SizedBox(
+                              height: 100.0,
+                            ),
+                            const Text(
+                              '@Developed by Shark Developers',
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -99,7 +95,7 @@ class LoginPage extends StatelessWidget {
                 const Text(
                   textAlign: TextAlign.center,
                   'SIAM CITY CIMENT LANKA LIMITED ARUWAKKARU QUARRY SITE',
-                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w700),
                 )
               ],
             ),

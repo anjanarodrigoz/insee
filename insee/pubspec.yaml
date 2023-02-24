@@ -41,6 +41,9 @@ dependencies:
   firebase_database: ^10.0.9
   cloud_firestore: ^4.3.1
   get_storage: ^2.0.3
+  fl_chart: ^0.61.0
+  syncfusion_flutter_gauges: ^20.4.51
+  syncfusion_flutter_charts: ^20.4.51
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +70,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/insee.png
+    - assets/chemical.png
+    - assets/dumptruck.png
+    - assets/filling.png
+    - assets/operater.png
+    - assets/setting.png
+    - assets/time.png
+    - assets/work.png
+    - assets/excavater.png
+    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
