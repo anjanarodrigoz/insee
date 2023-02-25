@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                             child: CustomTextFormField(
                               labelText: 'year',
                               onChanged: (value) =>
-                                  controller.year.value = value,
+                                  controller.year.value = int.parse(value),
                               radius: 10.0,
                               keyboardType: TextInputType.datetime,
                             ),
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                               labelText: 'month',
                               radius: 10.0,
                               onChanged: (value) =>
-                                  controller.month.value = value,
+                                  controller.month.value = int.parse(value),
                               keyboardType: TextInputType.datetime,
                             ),
                           )
@@ -64,15 +64,15 @@ class HomePage extends StatelessWidget {
                         labelText: 'Actual dozer hours',
                         radius: 10.0,
                         onChanged: (value) =>
-                            controller.dozerHours.value = int.parse(value),
+                            controller.dozerHours.value = double.parse(value),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 20.0),
                       CustomTextFormField(
                         labelText: 'Actual drilling hours',
                         radius: 10.0,
-                        onChanged: (value) =>
-                            controller.drillingHours.value = int.parse(value),
+                        onChanged: (value) => controller.drillingHours.value =
+                            double.parse(value),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 20.0),
@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                         labelText: 'Actual loading hours',
                         radius: 10.0,
                         onChanged: (value) =>
-                            controller.loadingHours.value = int.parse(value),
+                            controller.loadingHours.value = double.parse(value),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 20.0),
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                         labelText: 'Actual houlingh hours',
                         radius: 10.0,
                         onChanged: (value) =>
-                            controller.haulingHours.value = int.parse(value),
+                            controller.haulingHours.value = double.parse(value),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 40.0),

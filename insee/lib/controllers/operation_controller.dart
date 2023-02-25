@@ -2,13 +2,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class OperationController extends GetxController {
-  final month = RxString('');
-  final year = RxString('');
+  final month = RxInt(0);
+  final year = RxInt(0);
   final production = RxDouble(0);
-  final dozerHours = RxInt(0);
-  final drillingHours = RxInt(0);
-  final loadingHours = RxInt(0);
-  final haulingHours = RxInt(0);
+  final dozerHours = RxDouble(0);
+  final drillingHours = RxDouble(0);
+  final loadingHours = RxDouble(0);
+  final haulingHours = RxDouble(0);
 
   final box = GetStorage();
 
@@ -23,8 +23,8 @@ class OperationController extends GetxController {
   }
 
   void loadForm() {
-    month.value = box.read('month') ?? '';
-    year.value = box.read('year') ?? '';
+    month.value = box.read('month') ?? 0;
+    year.value = box.read('year') ?? 0;
     production.value = box.read('production') ?? 0;
     dozerHours.value = box.read('dozerHours') ?? 0;
     drillingHours.value = box.read('drillingHours') ?? 0;

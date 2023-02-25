@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 class SettingCard extends StatelessWidget {
   final String src;
   final _isHovering = false.obs;
-  SettingCard({required this.src, super.key});
+  final VoidCallback onTap;
+
+  SettingCard({required this.src, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class SettingCard extends StatelessWidget {
                   ));
             },
             child: InkWell(
+              onTap: onTap,
               child: Card(
                 elevation: 10.0,
                 shape: RoundedRectangleBorder(
