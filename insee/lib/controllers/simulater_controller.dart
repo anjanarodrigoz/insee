@@ -3,10 +3,10 @@ import 'package:insee/controllers/operation_controller.dart';
 
 class SimulatorController extends GetxController {
   //Loading cycle time (min)
-  final lTime = 18.0.obs;
+  final lTime = 4.0.obs;
 
   //Hauling cycle time (min)
-  final hTime = 4.0.obs;
+  final hTime = 18.0.obs;
 
   //Fill factor(%)
   final fillFac = 0.9.obs;
@@ -60,7 +60,7 @@ class SimulatorController extends GetxController {
   final acLoadHours = 0.0.obs;
 
   //Actual Dozer hours
-  final acDozerHours = 0.0.obs;
+  final acDrillingRate = 0.0.obs;
 
   //Calculated drilling hours
   final calDrillHours = 0.0.obs;
@@ -74,8 +74,20 @@ class SimulatorController extends GetxController {
   //Calculated Dozer hours
   final calDozerHours = 0.0.obs;
 
-  //Calculated cycle time;
+  //Calculated cycle time
   final calCycleTime = 0.0.obs;
+
+  //Total Drilling Cost
+  final totalDrillingCost = 0.0.obs;
+
+  //Total Blasting Cost
+  final totalBlastingCost = 0.0.obs;
+
+  //Total Loading Cost
+  final totalLoadingCost = 0.0.obs;
+
+  //Total Hauling Cost
+  final totalHaulingCost = 0.0.obs;
 
   @override
   void onInit() {
@@ -88,7 +100,7 @@ class SimulatorController extends GetxController {
     acDrillHours.value = controller.drillingHours.value;
     acHaulHours.value = controller.haulingHours.value;
     acLoadHours.value = controller.loadingHours.value;
-    acDozerHours.value = controller.loadingHours.value;
+    acDrillingRate.value = controller.drillingRate.value;
 
     findCalculatedValue();
 
@@ -105,20 +117,88 @@ class SimulatorController extends GetxController {
             fillFac.value *
             joEffiecency.value *
             mechAvailability.value *
-            density.value);
+            density.value *
+            3);
 
     calHaulHours.value =
-        acProduction.value * 60 / (truckCapacity.value * hTime.value);
+        acProduction.value * hTime.value / (truckCapacity.value * 60);
 
     calDrillHours.value =
-        dhLength.value * hpPerDay.value * 30 / drillRate.value;
+        dhLength.value * hpPerDay.value * 30 / acDrillingRate.value / 3.5;
 
     calCycleTime.value =
-        acProduction.value * 60 / (truckCapacity.value * acHaulHours.value);
+        truckCapacity.value * 60 * calHaulHours.value / acProduction.value;
+  }
 
-    print('Cycle TIme : ${calCycleTime.value}');
-    print('Drill hours : ${calDrillHours.value}');
-    print('Haul Hours : ${calHaulHours.value}');
-    print('Loading TIme : ${calLoadHours.value}');
+  void calculatedShouldCost() {
+    // Disel Consumption for Drilling Machine
+    double diselConForD = 14080;
+
+    //Current disel Rate in Srilanaka
+    double diselRate = 500.0;
+
+    //Drill Machine Hours
+    double dmHours = 240;
+
+    //Cost For Gets Parts
+    double partsCost = 200000;
+
+    //Operater Salary For Drilling Machine
+    double operaterSalary = 300000;
+
+    //Drilling Machine Rate
+    double dmRate = 2960;
+
+    //Calulate Total driling Machine
+    double diselForDM = diselConForD * diselRate;
+    double manitanceCostForDM = dmHours * dmRate + partsCost;
+    totalDrillingCost.value = diselForDM + manitanceCostForDM + operaterSalary;
+
+    //Disel For Blasting
+    double diselConForB = 838.98;
+    double toatalEC = 8005118;
+    double paymentFHFB = 125000;
+
+    //Total cost For Blasting
+    double diselForB = diselConForB * diselRate;
+    totalBlastingCost.value = diselForB + toatalEC + paymentFHFB;
+
+    //Total cost For Excavator
+    double diselConForE = 14080;
+
+    //Loading Machine hours
+    double loadingMH = 240;
+
+    //Loading rate
+    double loadingRate = 18;
+
+    //Usd rate
+    double usdRate = 360;
+
+    //Excavator Operater Salary
+    double excavatorOperaterSalary = 300000;
+
+    //Total Cost For Loading
+    double diselForExcavator = diselConForE * diselRate;
+    double maintanceCostForExcavator = loadingMH * loadingRate * usdRate;
+    totalLoadingCost.value =
+        diselForExcavator + maintanceCostForExcavator + excavatorOperaterSalary;
+
+    //Disel Consumption For Dump Truck
+    double diselConForDT = 33076;
+
+    //Dump Truck Machine Hours
+    double dumpTruckMH = 720;
+
+    //dump truck rate
+    double dtRate = 20;
+
+    //Dump Truck Operator Salary
+    double dtOperaterSalary = 300000;
+
+    //Total Cost For Hauling
+    double diselForDT = diselConForDT * diselRate;
+    double maintanceCostForDT = dumpTruckMH * dtRate * usdRate;
+    totalHaulingCost.value = diselForDT + maintanceCostForDT + dtOperaterSalary;
   }
 }

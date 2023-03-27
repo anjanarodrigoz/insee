@@ -23,6 +23,7 @@ class Analytics extends StatelessWidget {
   }
 
   upperColumn() {
+    controller.calculatedShouldCost();
     return Expanded(
         flex: 8,
         child: Row(children: [
@@ -30,11 +31,10 @@ class Analytics extends StatelessWidget {
           Expanded(
             flex: 2,
             child: MyPieChart(data: [
-              PieData('A', 10),
-              PieData('D', 10),
-              PieData('a', 80),
-              PieData('C', 30),
-              PieData('b', 50)
+              PieData('Drilling Cost', controller.totalDrillingCost.value),
+              PieData('Blasting Cost', controller.totalBlastingCost.value),
+              PieData('Loading Cost', controller.totalLoadingCost.value),
+              PieData('Hauling Cost', controller.totalHaulingCost.value),
             ]),
           ),
 
@@ -80,8 +80,8 @@ class Analytics extends StatelessWidget {
                     ],
                   )),
               Obx(() => MyGaugeChart(
-                    maxValue: 20,
-                    minValue: 0,
+                    maxValue: 30,
+                    minValue: 10,
                     value: controller.calCycleTime.value,
                   ))
             ],
@@ -104,8 +104,8 @@ class Analytics extends StatelessWidget {
                 controller.hTime.value = await Get.dialog(SliderDialog(
                   title: 'Hauling Cycle Time',
                   interval: 1,
-                  maxValue: 10,
-                  minValue: 0,
+                  maxValue: 20,
+                  minValue: 10,
                   value: controller.hTime.value,
                 ));
                 controller.findCalculatedValue();

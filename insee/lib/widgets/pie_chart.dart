@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MyPieChart extends StatelessWidget {
   final List<PieData> data;
   TooltipBehavior toolTipBehavior = TooltipBehavior(enable: true);
-  MyPieChart({required this.data});
+  MyPieChart({super.key, required this.data});
+
+  final oCcy = NumberFormat("#,##0.00", "en_US");
 
   @override
   Widget build(BuildContext context) {

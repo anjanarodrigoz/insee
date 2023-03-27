@@ -61,10 +61,10 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20.0),
                       CustomTextFormField(
-                        labelText: 'Actual dozer hours',
+                        labelText: 'Drilling Rate',
                         radius: 10.0,
                         onChanged: (value) =>
-                            controller.dozerHours.value = double.parse(value),
+                            controller.drillingRate.value = double.parse(value),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 20.0),
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20.0),
                       CustomTextFormField(
-                        labelText: 'Actual houlingh hours',
+                        labelText: 'Actual Hauling hours',
                         radius: 10.0,
                         onChanged: (value) =>
                             controller.haulingHours.value = double.parse(value),
